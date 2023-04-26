@@ -21,7 +21,6 @@ public class BaseTest {
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
-        driver.manage().window().maximize();
     }
 
     @BeforeMethod
@@ -41,6 +40,7 @@ public class BaseTest {
 
     public static void navigateToPage() {
         driver.get(url);
+        driver.manage().window().maximize();
     }
 
     public static void provideEmail(String email) {
