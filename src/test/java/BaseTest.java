@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,6 +21,7 @@ public class BaseTest {
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
+        driver.manage().window().maximize();
     }
 
     @BeforeMethod
@@ -85,4 +87,30 @@ public class BaseTest {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
         avatarIcon.click();
     }
-}
+
+    public static void clickNextSongBtn(){
+        WebElement next = driver.findElement(By.cssSelector("i.next.fa.fa-step-forward.control"));
+        next.click();
+    }
+
+    public static void pressPlay(){
+        WebElement play = driver.findElement(By.cssSelector("span.play"));
+        play.click();
+    }
+
+    //Validate that a song is playing by verifying if the pause button is displayed.
+    public static boolean verifyPlaying(){
+        boolean present;
+        try{
+            driver.findElement(By.cssSelector("span.pause"));
+        }
+        catch (NoSuchElementException e){
+            present = false;
+            System.out.println("The pause button is NOT displayed, so the song is NOT playing.");
+            return present;
+        }
+            present = true;
+            System.out.println("The pause button is displayed, so the song is playing.");
+            return present;
+        }
+    }

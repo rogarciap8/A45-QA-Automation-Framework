@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Play Song Suite">
+    <test name="Play Song Test" preserve-order="false">
+        <parameter name="email address" value="raul.garcia@testpro.io"/>
+        <parameter name="password" value="te$t$tudent"/>
+    <classes>
+            <class name="Homework18"/>
+    </classes>
+    </test>
+</suite>
