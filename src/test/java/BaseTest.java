@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -94,5 +95,31 @@ public class BaseTest {
     public static void clickAvatarIcon() {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
         avatarIcon.click();
+    }
+
+    public static void clickPL() throws InterruptedException {
+        WebElement pl = driver.findElement(By.xpath("//a[text()='PL']"));
+        pl.click();
+        Thread.sleep(1000);
+    }
+
+    public static void deleteThePL() throws InterruptedException {
+        WebElement delPlBtn = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
+        delPlBtn.click();
+        Thread.sleep(1000);
+
+        /* WebElement okBtn = driver.findElement(By.cssSelector("button.ok"));
+        okBtn.click();
+        //Thread.sleep(1000); */
+    }
+
+    public static boolean verifyMsg(){
+        boolean present = true;
+        try {
+            driver.findElement(By.xpath("//*[contains(text(),'Deleted playlist')]"));
+        } catch (NoSuchElementException e){
+            present = false;
+        }
+        return present;
     }
 }
