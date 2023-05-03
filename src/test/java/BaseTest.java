@@ -44,6 +44,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
         navigateToPage();
+        driver.manage().window().maximize();
 
         wait = new WebDriverWait(driver,Duration.ofSeconds(4));
     }
@@ -102,17 +103,17 @@ public class BaseTest {
     }
 
     public static void clickPL(){
-        /*WebElement pl = driver.findElement(By.xpath("//a[text()='PL']"));
+        WebElement pl = driver.findElement(By.xpath("//a[text()='PL']"));
+        //Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='PL']")));
         pl.click();
-        //Thread.sleep(1000);*/
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='PL']")));
     }
 
     public static void deleteThePL(){
-        /*WebElement delPlBtn = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
+        WebElement delPlBtn = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
+        //Thread.sleep(1000);*/
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.del.btn-delete-playlist")));
         delPlBtn.click();
-        Thread.sleep(1000);*/
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.del.btn-delete-playlist")));
 
         /* WebElement okBtn = driver.findElement(By.cssSelector("button.ok"));
         okBtn.click();
