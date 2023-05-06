@@ -1,10 +1,8 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
@@ -17,6 +15,7 @@ public class BaseTest {
     public static WebDriver driver = null;
     public static String url = "";
     static WebDriverWait wait;
+    Actions action;
 
     @BeforeSuite
     public static void setupClass() {
@@ -47,6 +46,7 @@ public class BaseTest {
         driver.manage().window().maximize();
 
         wait = new WebDriverWait(driver,Duration.ofSeconds(4));
+        action = new Actions(driver);
     }
     @AfterMethod
     public void closeBrowser() {
@@ -102,11 +102,28 @@ public class BaseTest {
         avatarIcon.click();
     }
 
-    public static void clickPL(){
-        WebElement pl = driver.findElement(By.xpath("//a[text()='PL']"));
-        //Thread.sleep(1000);
+    public void clickPl(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='PL']")));
-        pl.click();
+        WebElement pl = driver.findElement(By.xpath("//a[text()='PL']"));
+        action.moveToElement(pl).perform();
+        action.click(pl).perform();
+        //pl.click();
+    }
+
+    public void renamePl(){
+        WebElement pl = driver.findElement(By.xpath("//a[text()='PL']"));
+        action.contextClick(pl).perform();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("nav.menu.playlist-item-menu > ul > li:nth-child(1)")));
+        WebElement renameOption = driver.findElement(By.cssSelector("nav.menu.playlist-item-menu > ul > li:nth-child(1)"));
+
+        action.moveToElement(renameOption).perform();
+        action.click(renameOption).perform();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='inline-playlist-name-input']")));
+        WebElement textBox = driver.findElement(By.cssSelector("[data-testid='inline-playlist-name-input']"));
+        textBox.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        textBox.sendKeys("Renamed Playlist");
+        textBox.sendKeys(Keys.ENTER);
     }
 
     public static void deleteThePL(){
@@ -128,5 +145,15 @@ public class BaseTest {
             present = false;
         }
         return present;
+    }
+
+    public static boolean verifyRenamed(){
+        boolean renamed = true;
+        try {
+            driver.findElement(By.cssSelector("div.success.show"));
+        } catch (NoSuchElementException e){
+            renamed = false;
+        }
+        return renamed;
     }
 }

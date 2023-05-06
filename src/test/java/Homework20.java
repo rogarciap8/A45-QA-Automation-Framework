@@ -10,7 +10,7 @@ public class Homework20 extends BaseTest{
             clickSubmit();
 
             //WHEN
-            clickPL();
+            clickPl();
             deleteThePL();
 
             //THEN
