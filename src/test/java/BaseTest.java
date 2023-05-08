@@ -57,6 +57,7 @@ public class BaseTest {
         driver.get(url);
     }
 
+    /*
     public static void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.click();//not needed
@@ -128,13 +129,13 @@ public class BaseTest {
 
     public static void deleteThePL(){
         WebElement delPlBtn = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
-        //Thread.sleep(1000);*/
+        //Thread.sleep(1000);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.del.btn-delete-playlist")));
         delPlBtn.click();
 
-        /* WebElement okBtn = driver.findElement(By.cssSelector("button.ok"));
+        WebElement okBtn = driver.findElement(By.cssSelector("button.ok"));
         okBtn.click();
-        //Thread.sleep(1000); */
+        //Thread.sleep(1000);
     }
 
     public static boolean verifyMsg(){
@@ -156,4 +157,6 @@ public class BaseTest {
         }
         return renamed;
     }
+
+    */
 }

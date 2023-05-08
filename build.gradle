@@ -21,11 +21,11 @@ test {
     }
 }
 
-task RGTest(type: Test) {
-    useTestNG() {
-        suites "src/test/resources/TestNG.xml"
-    }
-}
+//task RGTest(type: Test) {
+//    useTestNG() {
+//        suites "src/test/resources/TestNG.xml"
+//    }
+//}
 
 //task testSmoke(type: Test) {
 //    useTestNG() {
