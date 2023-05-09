@@ -12,9 +12,9 @@ import java.time.Duration;
 
 
 public class BasePage {
-    public WebDriver driver;
-    static WebDriverWait wait;
-    Actions actions;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected Actions actions;
 
     String url;
 

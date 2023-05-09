@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage{
     //Locators
-    By emailField = By.cssSelector("input[type='email']");
-    By passwordField = By.cssSelector("input[type='password']");
-    By submit = By.cssSelector("button[type='submit']");
+    private By emailField = By.cssSelector("input[type='email']");
+    private By passwordField = By.cssSelector("input[type='password']");
+    private By submit = By.cssSelector("button[type='submit']");
 
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);

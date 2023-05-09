@@ -6,9 +6,9 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage{
     //Locators
-    By playlist = By.cssSelector(".playlist:nth-child(3)");
-    By editBtn = By.cssSelector("nav.menu.playlist-item-menu > ul > li:nth-child(1)");
-    By playlistBox = By.cssSelector("[name='name']");
+    private By playlist = By.cssSelector(".playlist:nth-child(3)");
+    private By editBtn = By.cssSelector("nav.menu.playlist-item-menu > ul > li:nth-child(1)");
+    private By playlistBox = By.cssSelector("[name='name']");
 
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
