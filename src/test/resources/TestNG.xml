@@ -8,7 +8,7 @@
             <class name="Pages.BasePage"/>
             <class name="Pages.LoginPage"/>
             <class name="Pages.HomePage"/>
-            <class name="Homework22"/>
+            <class name="Homework23"/>
         </classes>
     </test>
 </suite>

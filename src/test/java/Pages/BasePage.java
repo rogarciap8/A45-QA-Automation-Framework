@@ -1,15 +1,14 @@
 package Pages;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
-import java.time.Duration;
 
+import java.time.Duration;
 
 public class BasePage {
     protected WebDriver driver;
@@ -22,17 +21,18 @@ public class BasePage {
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         actions = new Actions(driver);
+        PageFactory.initElements(driver,this);
     }
 
-    public WebElement findElement(By locator){
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    protected WebElement findElement(WebElement element){
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void click(By locator){
-        actions.click(findElement(locator)).perform();
+    protected void click(WebElement element){
+        actions.click(findElement(element)).perform();
     }
 
-    public void rightClick(By locator){
-        actions.contextClick(findElement(locator)).perform();
+    protected void rightClick(WebElement element){
+        actions.contextClick(findElement(element)).perform();
     }
 }
