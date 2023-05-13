@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -79,9 +80,11 @@ public class BaseTest {
             case "firefox": //gradle clean test -Dbrowser=firefox
                 WebDriverManager.firefoxdriver().setup();
                 return driver = new FirefoxDriver();
-            case "Microsoft Edge": //gradle clean test -Dbrowser=Microsoft Edge
+            case "MicrosoftEdge": //gradle clean test -Dbrowser=Microsoft Edge
                 WebDriverManager.edgedriver().setup();
-                return driver = new EdgeDriver();
+                EdgeOptions eOptions = new EdgeOptions();
+                eOptions.addArguments("--remote-allow-origins=*");
+                return driver = new EdgeDriver(eOptions);
             case "grid-firefox": //gradle clean test -Dbrowser=grid-firefox
                 caps.setCapability("browserName", "firefox");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
