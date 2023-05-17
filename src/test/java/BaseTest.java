@@ -6,13 +6,10 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
@@ -25,27 +22,27 @@ public class BaseTest {
     public static WebDriver driver = null;
     public ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
     public static String url = "";
-    static WebDriverWait wait;
-    Actions action;
+//    static WebDriverWait wait;
+//    Actions action;
 
 /*
     @BeforeSuite
     public static void setupClass() {WebDriverManager.chromedriver().setup();}
 */
 
-    @DataProvider(name="IncorrectLoginData")
-    public static Object[][] getDataFromDataProviders() {
-
-        return new Object[][] {
-                {"invalid@mail.com", "invalidPass"},
-                {"demo@class.com", ""},
-                {"", ""}
-        };
-    }
+//    @DataProvider(name="IncorrectLoginData")
+//    public static Object[][] getDataFromDataProviders() {
+//
+//        return new Object[][] {
+//                {"invalid@mail.com", "invalidPass"},
+//                {"demo@class.com", ""},
+//                {"", ""}
+//        };
+//    }
 
     @BeforeMethod
     @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) throws MalformedURLException {
+    public void launchBrowser(String BaseURL) {
 /*
       Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
@@ -67,9 +64,10 @@ public class BaseTest {
         System.out.println(
                 "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getDriver());
 
-        wait = new WebDriverWait(driver,Duration.ofSeconds(4));
-        action = new Actions(driver);
+//        wait = new WebDriverWait(driver,Duration.ofSeconds(4));
+//        action = new Actions(driver);
     }
+
     @AfterMethod
     public void closeBrowser() {
         getDriver().close();
@@ -91,7 +89,9 @@ public class BaseTest {
         switch (browser) {
             case "firefox": //gradle clean test -Dbrowser=firefox
                 WebDriverManager.firefoxdriver().setup();
-                return driver = new FirefoxDriver();
+                FirefoxOptions optionsFirefox = new FirefoxOptions();
+                optionsFirefox.addArguments("-private");
+                return driver = new FirefoxDriver(optionsFirefox);
             case "MicrosoftEdge": //gradle clean test -Dbrowser=Microsoft Edge
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions eOptions = new EdgeOptions();
@@ -116,24 +116,25 @@ public class BaseTest {
         }
     }
 
-        public WebDriver lambdaTest() throws MalformedURLException {
-            String username = "rogarciap8";
-            String accessToken = "I0lwv2TvaOM1uhUEbbvkRZvGpNYtAMK4Qlh9a3NJojsIor79nw";
-            String hubURL = "https://hub.lambdatest.com/wd/hub";
+    public WebDriver lambdaTest() throws MalformedURLException {
+        String username = "rogarciap8";
+        String accessToken = "I0lwv2TvaOM1uhUEbbvkRZvGpNYtAMK4Qlh9a3NJojsIor79nw";
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
 
-            FirefoxOptions browserOptions = new FirefoxOptions();
-            browserOptions.setPlatformName("Windows 10");
-            browserOptions.setBrowserVersion("112.0");
-            HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-            ltOptions.put("username", username);
-            ltOptions.put("accessKey", accessToken);
-            ltOptions.put("project", "Untitled");
-            ltOptions.put("w3c", true);
-            ltOptions.put("plugin", "java-testNG");
-            browserOptions.setCapability("LT:Options", ltOptions);
+        FirefoxOptions browserOptions = new FirefoxOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("112.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", username);
+        ltOptions.put("accessKey", accessToken);
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-testNG");
+        browserOptions.setCapability("LT:Options", ltOptions);
 
-            return new RemoteWebDriver(new URL(hubURL), browserOptions);
+        return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
+}
 
     /*
     public static void provideEmail(String email) {
@@ -235,6 +236,4 @@ public class BaseTest {
         }
         return renamed;
     }
-
-    */
-}
+} */

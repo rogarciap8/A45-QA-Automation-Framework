@@ -6,8 +6,8 @@ import org.testng.annotations.Test;
 public class Homework22 extends BaseTest{
     @Test
     public void rename(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         String myNewPl = "Renamed Playlist";
 
