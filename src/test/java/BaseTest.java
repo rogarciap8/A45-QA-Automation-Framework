@@ -59,26 +59,30 @@ public class BaseTest {
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
-        navigateToPage();
+        getDriver().get(BaseURL);
+//        navigateToPage();
         driver.manage().window().maximize();
+        System.out.println(
+                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getDriver());
 
         wait = new WebDriverWait(driver,Duration.ofSeconds(4));
         action = new Actions(driver);
     }
     @AfterMethod
     public void closeBrowser() {
-        getDriver().quit();
+        getDriver().close();
+        threadDriver.remove();
     }
 
     public WebDriver getDriver() {
         return threadDriver.get();
     }
 
-    public static void navigateToPage() {
-        driver.get(url);
-    }
+//    public void navigateToPage() {
+//        threadDriver.get(url);
+//    }
 
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
