@@ -12,8 +12,8 @@ public class Homework24 extends BaseTest{
         String myNewPl = "Renamed Playlist";
 
         //GIVEN
-        //loginPage.login();
-        loginPage.provideEmail("raul.garcia@testpro.io").providePassword("te$t$tudent").clickSubmit();
+        loginPage.login();
+        //loginPage.provideEmail("raul.garcia@testpro.io").providePassword("te$t$tudent").clickSubmit();
 
         //WHEN
         homePage.renamePl(myNewPl);

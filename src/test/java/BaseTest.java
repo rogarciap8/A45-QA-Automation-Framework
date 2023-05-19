@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 public class BaseTest {
     public static WebDriver driver = null;
-    public ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    public ThreadLocal<WebDriver> threadDriver;
     public static String url = "";
 //    static WebDriverWait wait;
 //    Actions action;
@@ -51,6 +51,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
 */
         try {
+            threadDriver = new ThreadLocal<>();
             driver = pickBrowser(System.getProperty("browser"));
             threadDriver.set(driver);
         } catch (MalformedURLException e) {
