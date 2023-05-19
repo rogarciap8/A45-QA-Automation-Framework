@@ -71,7 +71,7 @@ public class BaseTest {
 
     @AfterMethod
     public void closeBrowser() {
-        getDriver().close();
+        getDriver().quit();
         threadDriver.remove();
     }
 
@@ -88,11 +88,11 @@ public class BaseTest {
         String gridURL = "http://192.168.1.162:4444";
 
         switch (browser) {
-            case "firefox": //gradle clean test -Dbrowser=firefox
-                WebDriverManager.firefoxdriver().setup();
-                FirefoxOptions optionsFirefox = new FirefoxOptions();
-                optionsFirefox.addArguments("-private");
-                return driver = new FirefoxDriver(optionsFirefox);
+            case "chrome": //gradle clean test -Dbrowser=chrome
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+                return driver = new ChromeDriver(options);
             case "MicrosoftEdge": //gradle clean test -Dbrowser=Microsoft Edge
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions eOptions = new EdgeOptions();
@@ -110,10 +110,10 @@ public class BaseTest {
             case "cloud":
                 return lambdaTest();
             default:
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-                return driver = new ChromeDriver(options);
+                WebDriverManager.firefoxdriver().setup();
+                FirefoxOptions optionsFirefox = new FirefoxOptions();
+                optionsFirefox.addArguments("-private");
+                return driver = new FirefoxDriver(optionsFirefox);
         }
     }
 
