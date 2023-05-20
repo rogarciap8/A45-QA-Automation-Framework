@@ -51,5 +51,6 @@ public class LoginStepDefinitions {
     @Then("I am logged in")
     public void iAmLoggedIn() {
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed());
+        driver.quit();
     }
 }
