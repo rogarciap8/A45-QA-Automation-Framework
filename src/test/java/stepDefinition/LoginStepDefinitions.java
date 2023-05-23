@@ -1,10 +1,12 @@
 package stepDefinition;
 
+import Pages.LoginPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,17 +37,23 @@ public class LoginStepDefinitions {
 
     @When("I enter the email address{string}")
     public void iEnterTheEmailAddress(String email) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']"))).sendKeys(email);
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']"))).sendKeys(email);
+        LoginPage logInEmail= new LoginPage(driver);
+        logInEmail.provideEmail(email);
     }
 
     @And("I enter the password {string}")
     public void iEnterThePassword(String password) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']"))).sendKeys(password);
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']"))).sendKeys(password);
+        LoginPage logInPassword = new LoginPage(driver);
+        logInPassword.providePassword(password);
     }
 
     @And("I submit")
     public void iSubmit() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='submit']"))).click();
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='submit']"))).click();
+        LoginPage submit = new LoginPage(driver);
+        submit.clickSubmit();
     }
 
     @Then("I am logged in")
