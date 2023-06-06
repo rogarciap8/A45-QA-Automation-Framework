@@ -6,12 +6,12 @@
     <test name="Example Test">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
-<!--            <class name="RandomTests">-->
+<!--            <class name="A45_Files.RandomTests">-->
 <!--                <methods>-->
 <!--                    <include name="actionMethods" />-->
 <!--                </methods>-->
 <!--            </class>-->
-                        <class name="LoginTests">
+                        <class name="A45_Files.LoginTests">
                             <methods>
                                 <include name="loginValidEmailPasswordTest" />
                                 <include name="loginValidEmailEmptyPasswordTest" />

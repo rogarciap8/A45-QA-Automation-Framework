@@ -1,3 +1,5 @@
+package A45_Files;
+
 import org.testng.annotations.Test;
 
 public class RandomTests extends BaseTest {
