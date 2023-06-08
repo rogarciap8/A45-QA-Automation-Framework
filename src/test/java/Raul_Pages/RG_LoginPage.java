@@ -6,13 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class RG_LoginPage extends RG_BasePage{
-    @FindBy(css = "[type=email']")
+    @FindBy(css = "input[type='email']")
     private WebElement emailField;
 
-    @FindBy(css = "[type=password']")
+    @FindBy(css = "input[type='password']")
     private WebElement passwordField;
 
-    @FindBy(css = "[type=submit']")
+    @FindBy(css = "button[type='submit']")
     private WebElement submitBtn;
 
     @FindBy(css = "img[class='avatar']")

@@ -1,6 +1,5 @@
 package Raul_Pages;
 
-import A45_Files.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class RG_BasePage extends BaseTest {
+public class RG_BasePage{
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
